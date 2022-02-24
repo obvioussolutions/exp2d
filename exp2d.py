@@ -5,13 +5,13 @@ from scipy import special, integrate
 #exp2d
 class exp2d:
     #define the class for the distribution
-    def __init__(self,a = 1,b = 1,c = 0):
+    def __init__(self,a = (1,1),c = 0):
         #basic variables
-        self.a = a; self.b = b; self.c = c
+        self.a = a[0]; self.b = a[1]; self.c = c
         #derived variables
-        self.nc = a*b
+        self.nc = self.a*self.b
         if self.c > 0:
-            self.q = a*b/c; self.enq = np.exp(-self.q); self.e1q = special.exp1(self.q); self.nc = c*self.enq/self.e1q
+            self.q = self.a*self.b/self.c; self.enq = np.exp(-self.q); self.e1q = special.exp1(self.q); self.nc = self.c*self.enq/self.e1q
         
     #check that the parameters are within the parameter space
     def in_Param_Space(self):
